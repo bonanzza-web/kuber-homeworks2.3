@@ -13,7 +13,11 @@ spec:
           - pathType: Prefix
             backend:
               service:
-                name: nginx-svc
+                name: nginxpage-svc
                 port:
                   number: 80
             path: /
+  tls:
+  - hosts:
+    - nginx-ubunta.ru
+    secretName: nginx-tls
