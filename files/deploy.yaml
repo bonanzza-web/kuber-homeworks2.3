@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-mult
+  labels:
+    app: nginx-mult
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx-mult
+  template:
+    metadata:
+      labels:
+        app: nginx-mult
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:latest
+        ports:
+        - containerPort: 8080
+        volumeMounts:
+        - name: nginx-conf-vol
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+        - name: nginx-page
+          mountPath: /usr/share/nginx/html/index.html
+          subPath: index.html
+      - name: multitools
+        image: wbitt/network-multitool
+        ports:
+        - containerPort: 8085
+        env:
+        - name: HTTP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: nginx-config
+              key: multiport
+      volumes:
+      - name: nginx-conf-vol
+        configMap:
+          name: nginx-config
+      - name: nginx-page
+        configMap:
+          name: nginx-page
