@@ -31,25 +31,6 @@
       path: /home/ubuntu/.kube
       owner: ubuntu
 
-  # - name: Copy files
-  #   ansible.builtin.copy:
-  #     src: "{{ item.src }}"
-  #     dest: "{{ item.dest }}"
-  #   with_items:
-  #     - { src: "files/deploy.yaml", dest: "/home/ubuntu/deploy.yaml" }
-  #     - { src: "files/pv.yaml", dest: "/home/ubuntu/pv.yaml" }
-  #     - { src: "files/pvc.yaml", dest: "/home/ubuntu/pvc.yaml" }
-
-  # - name: Add pause
-  #   ansible.builtin.pause:
-  #     seconds: 90
-
-  # - name: Apply deployment
-  #   ansible.builtin.shell: |
-  #     microk8s kubectl apply -f /home/ubuntu/deploy.yaml
-  #     microk8s kubectl apply -f /home/ubuntu/pv.yaml
-  #     microk8s kubectl apply -f /home/ubuntu/pvc.yaml
-
   - name: Add alias
     ansible.builtin.lineinfile:
       path: /home/ubuntu/.bashrc

@@ -156,8 +156,9 @@ ubuntu@server-kube:~$ curl localhost:30698
   </body>
 </html>
 
-
 ```
+
+![alt text](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/screen1.png)
 
 ------
 
@@ -183,8 +184,38 @@ secret/nginx-tls created
 ubuntu@server-kube:~$ micro get secret
 NAME        TYPE                DATA   AGE
 nginx-tls   kubernetes.io/tls   2      28s
+ubuntu@server-kube:~$ micro describe ingress
+Name:             nginx-ingress
+Labels:           <none>
+Namespace:        default
+Address:          127.0.0.1
+Ingress Class:    nginx
+Default backend:  <default>
+TLS:
+  nginx-tls terminates nginx-ubunta.ru
+Rules:
+  Host             Path  Backends
+  ----             ----  --------
+  nginx-ubunta.ru
+                   /   nginxpage-svc:80 (10.1.55.220:80)
+Annotations:       nginx.ingress.kubernetes.io/rewrite-target: /
+Events:            <none>
 
 ```
+
+![alt text](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/screen2.png)
+
+------
+
+### Манифесты:    
+
+[ConfigMap с конфигурацией nginx](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/configmap-conf.yaml) 
+[ConfigMap со страницей](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/configmap-page.yaml)    
+[Deployment для задания 1](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/deploy.yaml)    
+[Deployment для задания 2](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/deploy-nginx.yaml)    
+[Service для задания 1](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/nginx-svc.yaml)    
+[Service для задания 2](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/nginxpage-svc.yaml)    
+[Ingress](https://github.com/bonanzza-web/kuber-homeworks2.3/blob/main/files/ingress.yaml)      
 
 ------
 
